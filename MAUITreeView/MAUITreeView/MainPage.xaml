@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MAUITreeView"
+             xmlns:treeviewengine="clr-namespace:Syncfusion.TreeView.Engine;assembly=Syncfusion.Maui.TreeView"
+             xmlns:treeView="clr-namespace:Syncfusion.Maui.TreeView;assembly=Syncfusion.Maui.TreeView"
+             x:Class="MAUITreeView.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:FileManagerViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <treeView:SfTreeView ItemsSource="{Binding Folders}" 
+                                 AutoExpandMode="AllNodesExpanded"
+                                 AllowDragging="True"
+                                 ScrollBarVisibility="Never"
+                                 SelectionMode="Single">
+
+                <treeView:SfTreeView.Behaviors>
+                    <local:Behavior/>
+                </treeView:SfTreeView.Behaviors>
+
+                <treeView:SfTreeView.HierarchyPropertyDescriptors>
+                    <treeviewengine:HierarchyPropertyDescriptor TargetType="{x:Type local:Folder}" ChildPropertyName="FilesInfo"/>
+                    <treeviewengine:HierarchyPropertyDescriptor TargetType="{x:Type local:File}" ChildPropertyName="SubFiles"/>
+                </treeView:SfTreeView.HierarchyPropertyDescriptors>
+
+                <treeView:SfTreeView.DragItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="grid" RowSpacing="0" Background="LightGray" Padding="8">
+                            <Grid RowSpacing="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="&#xe739;" 
+                                       TextColor="#90080B"
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center"
+                                       FontSize="20"
+                                       FontFamily="MauiMaterialAssets"                                     
+                                       IsVisible="{Binding Source={x:Reference viewModel}, Path=BlockIconVisible}"/>
+                                <Image Grid.Column="1" Source="{Binding ImageIcon}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       HeightRequest="24" 
+                                       WidthRequest="24"/>
+                                <Grid Grid.Column="0">
+                                    
+                                </Grid>
+                                <Label LineBreakMode="NoWrap" Grid.Column="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding FolderName}"
+                                       CharacterSpacing="0.25" 
+                                       FontSize="14"
+                                       VerticalTextAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </treeView:SfTreeView.DragItemTemplate>
+
+                <treeView:SfTreeView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="grid" RowSpacing="0" BackgroundColor="Transparent">
+                            <Grid RowSpacing="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Image Source="{Binding ImageIcon}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HeightRequest="24" 
+                                           WidthRequest="24"/>
+                                </Grid>
+                                <Grid Grid.Column="1" RowSpacing="1" Padding="1,0,0,0" VerticalOptions="Center">
+                                    <Label LineBreakMode="NoWrap"
+                                           Margin="5,0,0,0"
+                                           Text="{Binding FolderName}"
+                                           CharacterSpacing="0.25" 
+                                           FontFamily="Roboto-Regular" 
+                                           FontSize="14"
+                                           VerticalTextAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </treeView:SfTreeView.ItemTemplate>
+            </treeView:SfTreeView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
