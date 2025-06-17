@@ -16,7 +16,7 @@
                                  AutoExpandMode="AllNodesExpanded"
                                  AllowDragging="True"
                                  ScrollBarVisibility="Never"
-                                 SelectionMode="Single">
+                                 SelectionMode="Multiple">
 
                 <treeView:SfTreeView.Behaviors>
                     <local:Behavior/>
@@ -29,15 +29,18 @@
 
                 <treeView:SfTreeView.DragItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="grid" RowSpacing="0" Background="LightGray" Padding="8">
+                        <Border x:Name="grid" Padding="8" StrokeThickness="1" Stroke="#6750A4" Background="White">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
                             <Grid RowSpacing="0" Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="40" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="&#xe739;" 
-                                       TextColor="#90080B"
+                                <Label Text="&#xe70E;" 
+                                       TextColor="#B3261E"
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Center"
                                        FontSize="20"
@@ -58,7 +61,7 @@
                                        FontSize="14"
                                        VerticalTextAlignment="Center" />
                             </Grid>
-                        </Grid>
+                        </Border>
                     </DataTemplate>
                 </treeView:SfTreeView.DragItemTemplate>
 

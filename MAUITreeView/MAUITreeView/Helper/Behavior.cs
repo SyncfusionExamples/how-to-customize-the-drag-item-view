@@ -29,14 +29,7 @@ namespace MAUITreeView
         {
             if (e.Action == Syncfusion.Maui.TreeView.DragAction.Dragging)
             {
-                if (e.DropPosition == Syncfusion.Maui.TreeView.DropPosition.None)
-                {
-                    viewModel.BlockIconVisible = true;
-                }
-                else
-                {
-                    viewModel.BlockIconVisible = false;
-                }
+                viewModel.BlockIconVisible = e.DropPosition == Syncfusion.Maui.TreeView.DropPosition.None;
             }
         }
 
