@@ -15,7 +15,6 @@
             <treeView:SfTreeView ItemsSource="{Binding Folders}" 
                                  AutoExpandMode="AllNodesExpanded"
                                  AllowDragging="True"
-                                 ScrollBarVisibility="Never"
                                  SelectionMode="Multiple">
 
                 <treeView:SfTreeView.Behaviors>
